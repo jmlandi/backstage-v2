@@ -1,0 +1,31 @@
+{
+  "name": "backstage-website-v2",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Landing Page - Backstage Produtora de Eventos",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "netlify:dev": "netlify dev",
+    "netlify:deploy": "netlify deploy --prod"
+  },
+  "dependencies": {
+    "vue": "^3.4.21",
+    "@neondatabase/serverless": "^0.9.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.0.4",
+    "vite": "^5.1.6"
+  },
+  "keywords": [
+    "vue3",
+    "vite",
+    "netlify",
+    "neon-database",
+    "landing-page",
+    "event-production"
+  ],
+  "author": "Backstage Produtora de Eventos",
+  "license": "MIT"
+}

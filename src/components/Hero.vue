@@ -165,8 +165,8 @@ onUnmounted(() => {
 
 .carousel {
   position: relative;
-  height: 100vh;
-  min-height: 100vh;
+  height: 60vh;
+  min-height: 400px;
 }
 
 .carousel-slide {
@@ -380,8 +380,8 @@ onUnmounted(() => {
 /* Responsive */
 @media (min-width: 768px) {
   .carousel {
-    height: 70vh;
-    min-height: 600px;
+    height: 60vh;
+    min-height: 500px;
   }
 
   .carousel-arrow {
@@ -401,8 +401,8 @@ onUnmounted(() => {
 
 @media (min-width: 1025px) {
   .carousel {
-    height: 80vh;
-    min-height: 700px;
+    height: 65vh;
+    min-height: 550px;
   }
 
   .carousel-dots {
@@ -412,8 +412,8 @@ onUnmounted(() => {
 
 @media (min-width: 1441px) {
   .carousel {
-    height: 85vh;
-    min-height: 800px;
+    height: 65vh;
+    min-height: 600px;
   }
 }
 </style>

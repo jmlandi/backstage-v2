@@ -74,7 +74,7 @@ export function useContact() {
     submitMessage.value = null
 
     try {
-      const response = await fetch('/.netlify/functions/save-contact', {
+      const response = await fetch('/.netlify/functions/send-contact-email', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

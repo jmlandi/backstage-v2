@@ -82,6 +82,8 @@ ${message}
     `
 
     // Send email via Resend
+    // NOTE: Update the 'from' address to use a custom verified domain in production
+    // The 'onboarding@resend.dev' address is for testing only
     const result = await resend.emails.send({
       from: 'Backstage Produtora <onboarding@resend.dev>',
       to: ['show@backstageproductions.co.uk'],
@@ -108,8 +110,7 @@ ${message}
     return {
       statusCode: 500,
       body: JSON.stringify({
-        error: 'Failed to send email',
-        details: process.env.NODE_ENV === 'development' ? error.message : undefined
+        error: 'Failed to send email'
       })
     }
   }

@@ -26,26 +26,23 @@ Use this checklist before deploying your Backstage website to production.
 - [ ] Consider WebP format for better compression
 - [ ] All images display correctly with no 404 errors
 
-## 💾 Database
+## 📧 Email Configuration
 
-- [ ] Neon Database account created
-- [ ] Database project created in Neon
-- [ ] SQL schema executed (`database/schema.sql`)
-- [ ] Database table `contatos` exists
-- [ ] Connection string copied
-- [ ] `.env` file created with `DATABASE_URL`
-- [ ] Test database connection (submit contact form locally with `netlify dev`)
-- [ ] Verify data appears in Neon database
+- [ ] Resend account created
+- [ ] API key generated from Resend dashboard
+- [ ] `.env` file created with `RESEND_API_KEY`
+- [ ] Test email sending (submit contact form locally with `netlify dev`)
+- [ ] Verify emails arrive at destination
 
 ## 🔐 Environment Variables
 
 ### Local (.env file)
 - [ ] `.env` file created (not committed to Git!)
-- [ ] `DATABASE_URL` set in `.env`
+- [ ] `RESEND_API_KEY` set in `.env`
 - [ ] Local testing works with Netlify CLI
 
 ### Production (Netlify)
-- [ ] Netlify environment variable `DATABASE_URL` configured
+- [ ] Netlify environment variable `RESEND_API_KEY` configured
 - [ ] Environment variable is accessible to functions
 
 ## 🎯 Content Review
@@ -71,7 +68,7 @@ Use this checklist before deploying your Backstage website to production.
 - [ ] Contact form validation works (try invalid inputs)
 - [ ] Contact form submits successfully
 - [ ] Success toast appears after submission
-- [ ] Data saved to database
+- [ ] Email is received at destination
 - [ ] Error handling works (test with invalid data)
 - [ ] All external links open in new tab
 

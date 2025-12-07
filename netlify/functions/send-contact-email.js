@@ -15,33 +15,33 @@ export async function handler(event, context) {
   try {
     // Parse request body
     const data = JSON.parse(event.body)
-    const { name, email, phone, message } = data
+    const { nome, email, telefone, mensagem } = data
 
     // Validate required fields
-    if (!name || !email || !message) {
+    if (!nome || !email || !mensagem) {
       return {
         statusCode: 400,
         body: JSON.stringify({
-          error: 'Missing required fields: name, email, message'
+          error: 'Missing required fields: nome, email, mensagem'
         })
       }
     }
 
     // Validate field lengths
-    if (name.length < 3) {
+    if (nome.length < 3) {
       return {
         statusCode: 400,
         body: JSON.stringify({
-          error: 'Name must be at least 3 characters'
+          error: 'Nome must be at least 3 characters'
         })
       }
     }
 
-    if (message.length < 10) {
+    if (mensagem.length < 10) {
       return {
         statusCode: 400,
         body: JSON.stringify({
-          error: 'Message must be at least 10 characters'
+          error: 'Mensagem must be at least 10 characters'
         })
       }
     }
@@ -63,31 +63,31 @@ export async function handler(event, context) {
     // Prepare email content
     const emailHtml = `
       <h2>Nova mensagem de contato - Backstage Produtora</h2>
-      <p><strong>Nome:</strong> ${name}</p>
+      <p><strong>Nome:</strong> ${nome}</p>
       <p><strong>Email:</strong> ${email}</p>
-      ${phone ? `<p><strong>Telefone:</strong> ${phone}</p>` : ''}
+      ${telefone ? `<p><strong>Telefone:</strong> ${telefone}</p>` : ''}
       <p><strong>Mensagem:</strong></p>
-      <p>${message.replace(/\n/g, '<br>')}</p>
+      <p>${mensagem.replace(/\n/g, '<br>')}</p>
     `
 
     const emailText = `
 Nova mensagem de contato - Backstage Produtora
 
-Nome: ${name}
+Nome: ${nome}
 Email: ${email}
-${phone ? `Telefone: ${phone}` : ''}
+${telefone ? `Telefone: ${telefone}` : ''}
 
 Mensagem:
-${message}
+${mensagem}
     `
 
     // Send email via Resend
     // NOTE: Update the 'from' address to use a custom verified domain in production
     // The 'onboarding@resend.dev' address is for testing only
     const result = await resend.emails.send({
-      from: 'Backstage Produtora <onboarding@resend.dev>',
-      to: ['show@backstageproductions.co.uk'],
-      subject: `Nova mensagem de contato - ${name}`,
+      from: process.env.RESEND_FROM_EMAIL || 'Backstage Produtora <onboarding@resend.dev>',
+      to: [process.env.RESEND_TO_EMAIL || 'show@backstageproductions.co.uk'],
+      subject: `Nova mensagem de contato - ${nome}`,
       html: emailHtml,
       text: emailText,
       replyTo: email

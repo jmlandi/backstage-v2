@@ -146,10 +146,12 @@ const teamMembers = ref([
 
 .section-title {
   text-align: center;
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(1.5rem, 3vw, 2rem);
   color: var(--color-secondary);
   margin-bottom: var(--spacing-3xl);
-  letter-spacing: 0.05em;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  font-weight: var(--font-weight-bold);
   position: relative;
 }
 

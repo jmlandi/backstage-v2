@@ -7,7 +7,7 @@ Modern landing page built with Vue 3 (Composition API) for Backstage event produ
 - **Framework**: Vue 3 (Composition API)
 - **Build Tool**: Vite
 - **Deployment**: Netlify
-- **Database**: Neon Database (PostgreSQL)
+- **Email**: Resend API
 - **Font**: SpaceGrotesk (local)
 
 ## Design System
@@ -28,7 +28,7 @@ Modern landing page built with Vue 3 (Composition API) for Backstage event produ
 - ✅ Auto-rotating hero carousel
 - ✅ Responsive event cards grid
 - ✅ Animated hamburger menu (mobile)
-- ✅ Contact form with Neon Database integration
+- ✅ Contact form with email integration (Resend)
 - ✅ Smooth scroll navigation
 - ✅ Performance optimized (lazy loading, code splitting)
 - ✅ Modern minimalist design
@@ -60,7 +60,7 @@ npm run preview
 Create a `.env` file in the root directory:
 
 ```env
-DATABASE_URL=your_neon_database_connection_string
+RESEND_API_KEY=your_resend_api_key
 ```
 
 ## Deployment
@@ -68,7 +68,7 @@ DATABASE_URL=your_neon_database_connection_string
 This project is configured for Netlify deployment with serverless functions.
 
 1. Connect your repository to Netlify
-2. Set the `DATABASE_URL` environment variable in Netlify dashboard
+2. Set the `RESEND_API_KEY` environment variable in Netlify dashboard
 3. Deploy!
 
 ## Project Structure

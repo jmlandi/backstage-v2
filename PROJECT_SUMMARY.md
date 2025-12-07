@@ -2,7 +2,7 @@
 
 ## 🎯 Project Overview
 
-A modern, high-performance landing page for Backstage Produtora de Eventos, built with Vue 3 and deployed on Netlify with Neon Database integration.
+A modern, high-performance landing page for Backstage Produtora de Eventos, built with Vue 3 and deployed on Netlify with Resend email integration.
 
 ## ✨ Features Implemented
 
@@ -56,7 +56,7 @@ A modern, high-performance landing page for Backstage Produtora de Eventos, buil
 - Toast notifications (success/error)
 - Social media icons
 - Contact information block
-- Neon Database integration
+- Email integration via Resend
 
 #### 7. **Footer Component** (`src/components/Footer.vue`)
 - Multi-column responsive layout
@@ -75,13 +75,12 @@ A modern, high-performance landing page for Backstage Produtora de Eventos, buil
 - ✅ CSS variables for consistent theming
 - ✅ Optimized asset caching (configured in netlify.toml)
 
-### Database Integration
+### Email Integration
 
-- ✅ Netlify serverless function (`netlify/functions/save-contact.js`)
-- ✅ Neon Database PostgreSQL integration
+- ✅ Netlify serverless function (`netlify/functions/send-contact-email.js`)
+- ✅ Resend API for email delivery
 - ✅ Form validation on both client and server
 - ✅ Secure environment variable handling
-- ✅ Complete database schema (`database/schema.sql`)
 
 ### Development Tools
 
@@ -119,9 +118,7 @@ backstage-website-v2/
 │   └── main.js             # ✅ Application entry point
 ├── netlify/
 │   └── functions/
-│       └── save-contact.js # ✅ Database function
-├── database/
-│   └── schema.sql          # ✅ Database schema
+│       └── send-contact-email.js # ✅ Email function
 ├── index.html              # ✅ HTML entry point
 ├── vite.config.js          # ✅ Vite configuration
 ├── netlify.toml            # ✅ Netlify configuration
@@ -131,7 +128,6 @@ backstage-website-v2/
 ├── README.md               # ✅ Main documentation
 ├── QUICKSTART.md           # ✅ Quick start guide
 ├── DEPLOYMENT.md           # ✅ Deployment instructions
-├── DATABASE_SETUP.md       # ✅ Database setup guide
 ├── ASSETS_GUIDE.md         # ✅ Assets instructions
 └── PROJECT_SUMMARY.md      # ✅ This file
 ```
@@ -169,11 +165,10 @@ Follow `ASSETS_GUIDE.md`:
 - Download SpaceGrotesk fonts → `/public/fonts/`
 - Add images → `/public/images/`
 
-### 3. Setup Database
-Follow `DATABASE_SETUP.md`:
-- Create Neon account and database
-- Run SQL schema
-- Configure environment variables
+### 3. Setup Email
+Create `.env` file:
+- Get Resend API key from https://resend.com
+- Add `RESEND_API_KEY` to `.env`
 
 ### 4. Development
 ```bash
@@ -207,7 +202,7 @@ All code follows the project standards:
 - Server-side validation
 - CORS headers configured
 - XSS protection
-- Secure database connections
+- Secure API key handling
 
 ## 📈 Performance Targets
 
@@ -223,8 +218,7 @@ All code follows the project standards:
 | Vue 3 | Frontend framework (Composition API) |
 | Vite | Build tool & dev server |
 | Netlify | Hosting & serverless functions |
-| Neon Database | PostgreSQL database |
-| @neondatabase/serverless | Database driver |
+| Resend | Email delivery service |
 
 ## 📝 Content to Update
 
@@ -247,7 +241,7 @@ Before going live, customize:
 - ✅ SEO-friendly structure
 - ✅ Accessibility features
 - ✅ Form validation
-- ✅ Database integration
+- ✅ Email integration
 - ✅ Error handling
 - ✅ Loading states
 
@@ -256,7 +250,6 @@ Before going live, customize:
 - `README.md` - Complete project documentation
 - `QUICKSTART.md` - Quick start for developers
 - `DEPLOYMENT.md` - Step-by-step deployment
-- `DATABASE_SETUP.md` - Database configuration
 - `ASSETS_GUIDE.md` - Asset requirements and optimization
 - `PROJECT_SUMMARY.md` - This comprehensive overview
 
@@ -267,7 +260,7 @@ Before going live, customize:
 All core features implemented according to specifications:
 - Modern Vue 3 application
 - Fully responsive design
-- Database integration
+- Email integration
 - Performance optimized
 - Deployment ready
 
@@ -279,7 +272,7 @@ All core features implemented according to specifications:
 2. **Optimize Images**: Use the tools mentioned in ASSETS_GUIDE.md
 3. **Monitor Performance**: Use Lighthouse after deployment
 4. **Keep Updated**: Regular `npm update` for security
-5. **Backup Data**: Regular database exports from Neon
+5. **Check Emails**: Monitor contact form submissions in your inbox
 
 ## 🆘 Getting Help
 

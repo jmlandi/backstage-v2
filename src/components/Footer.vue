@@ -13,7 +13,7 @@
         </div>
 
         <!-- Quick Links -->
-        <div class="footer-section">
+        <div class="footer-section footer-section-right">
           <h3 class="footer-title">links rápidos</h3>
           <nav class="footer-nav">
             <a href="#hero" @click.prevent="scrollToSection('hero')">home</a>
@@ -24,7 +24,7 @@
         </div>
 
         <!-- Contact Info -->
-        <div class="footer-section">
+        <!-- <div class="footer-section">
           <h3 class="footer-title">contato</h3>
           <div class="footer-contacts">
             <a href="mailto:contato@backstageproductions.com.br">contato@backstageproductions.com.br</a>
@@ -32,7 +32,7 @@
             <p>Rua dos Artistas, 456</p>
             <p>Vila Madalena - São Paulo/SP</p>
           </div>
-        </div>
+        </div> -->
 
         <!-- Social Media -->
         <!-- <div class="footer-section">
@@ -132,7 +132,14 @@ const currentYear = computed(() => new Date().getFullYear())
 
 .footer-nav a:hover {
   color: var(--color-accent);
+}
+
+.footer-section:not(.footer-section-right) .footer-nav a:hover {
   padding-left: var(--spacing-xs);
+}
+
+.footer-section-right .footer-nav a:hover {
+  padding-right: var(--spacing-xs);
 }
 
 .footer-contacts {
@@ -218,7 +225,12 @@ const currentYear = computed(() => new Date().getFullYear())
 /* Responsive */
 @media (min-width: 768px) {
   .footer-content {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer-section-right {
+    align-items: flex-end;
+    text-align: right;
   }
 
   .footer-bottom {
@@ -229,7 +241,7 @@ const currentYear = computed(() => new Date().getFullYear())
 
 @media (min-width: 1025px) {
   .footer-content {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 1fr 1fr;
   }
 }
 </style>

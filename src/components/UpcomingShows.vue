@@ -28,7 +28,6 @@
             <div class="show-info">
               <div class="show-date">{{ show.date }}</div>
               <h3 class="show-artist">{{ show.artist }}</h3>
-              <p class="show-venue">{{ show.location }}</p>
               <a
                 :href="show.ticketLink"
                 class="btn-tickets"
@@ -37,6 +36,7 @@
               >
                 INGRESSOS
               </a>
+              <p class="show-venue">{{ show.location }}</p>
             </div>
           </div>
         </div>
@@ -114,7 +114,7 @@ const handleImageLoad = (event) => {
 .section-title {
   text-align: left;
   color: var(--color-accent);
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(1.5rem, 3vw, 2rem);
   letter-spacing: 0.02em;
   text-transform: uppercase;
   font-weight: var(--font-weight-bold);
@@ -128,20 +128,19 @@ const handleImageLoad = (event) => {
 
 .show-item {
   display: grid;
-  grid-template-columns: 100px 1fr;
+  grid-template-columns: auto 1fr;
   gap: var(--spacing-md);
   padding: var(--spacing-md) 0;
-  border-bottom: 1px solid rgba(203, 0, 0, 0.2);
   transition: all var(--transition-fast);
 }
 
 .show-item:hover {
-  border-bottom-color: var(--color-accent);
+  opacity: 0.9;
 }
 
 .show-image {
-  width: 100px;
-  height: 100px;
+  height: 100%;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
   flex-shrink: 0;
   display: flex;
@@ -164,7 +163,7 @@ const handleImageLoad = (event) => {
 .show-info {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-xs);
+  gap: var(--spacing-sm);
 }
 
 .show-date {
@@ -174,21 +173,12 @@ const handleImageLoad = (event) => {
 }
 
 .show-artist {
-  font-size: 1.125rem;
+  font-size: 1.25rem;
   font-weight: var(--font-weight-bold);
   color: var(--color-accent);
   margin: 0;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-}
-
-.show-venue {
-  font-size: 0.875rem;
-  color: var(--color-accent);
-  margin: 0;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: var(--spacing-sm);
 }
 
 .btn-tickets {
@@ -205,6 +195,14 @@ const handleImageLoad = (event) => {
   width: fit-content;
 }
 
+.show-venue {
+  font-size: 0.875rem;
+  color: var(--color-accent);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
 .btn-tickets:hover {
   background-color: var(--color-secondary);
   color: var(--color-accent);
@@ -213,16 +211,16 @@ const handleImageLoad = (event) => {
 /* Tablet Layout */
 @media (min-width: 768px) {
   .show-item {
-    grid-template-columns: 150px 1fr;
+    grid-template-columns: auto 1fr;
   }
 
   .show-image {
-    width: 150px;
-    height: 150px;
+    height: 100%;
+    aspect-ratio: 1 / 1;
   }
 
   .show-artist {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
   }
 
   .show-date {
@@ -230,6 +228,10 @@ const handleImageLoad = (event) => {
   }
 
   .show-venue {
+    font-size: 1rem;
+  }
+
+  .btn-tickets {
     font-size: 0.875rem;
   }
 }
@@ -247,10 +249,11 @@ const handleImageLoad = (event) => {
     position: sticky;
     top: calc(var(--header-height) + var(--spacing-xl));
     margin-bottom: 0;
+    padding-top: var(--spacing-lg);
   }
 
   .section-title {
-    font-size: 3rem;
+    font-size: 2rem;
   }
 
   .shows-content {
@@ -258,46 +261,49 @@ const handleImageLoad = (event) => {
   }
 
   .show-item {
-    grid-template-columns: 200px 1fr;
+    grid-template-columns: auto 1fr;
     gap: var(--spacing-xl);
     padding: var(--spacing-lg) 0;
   }
 
   .show-image {
-    width: 200px;
-    height: 200px;
+    height: 100%;
+    max-width: 250px;
+    aspect-ratio: 1 / 1;
   }
 
   .show-info {
     display: grid;
-    grid-template-columns: 1fr auto;
-    grid-template-rows: auto auto auto;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto;
     align-items: start;
-    gap: var(--spacing-xs) var(--spacing-lg);
+    gap: var(--spacing-md);
   }
 
   .show-date {
     grid-column: 1;
     grid-row: 1;
-    font-size: 1.25rem;
+    font-size: 1.5rem;
   }
 
   .show-artist {
     grid-column: 1;
     grid-row: 2;
-    font-size: 1.5rem;
+    font-size: 2rem;
+  }
+
+  .btn-tickets {
+    grid-column: 1;
+    grid-row: 3;
+    font-size: 1rem;
+    padding: 1rem 2rem;
   }
 
   .show-venue {
     grid-column: 1;
-    grid-row: 3;
+    grid-row: 4;
     margin-bottom: 0;
-  }
-
-  .btn-tickets {
-    grid-column: 2;
-    grid-row: 1 / 4;
-    align-self: center;
+    font-size: 1rem;
   }
 }
 </style>

@@ -6,7 +6,7 @@ Before deploying, ensure you have:
 
 - ✅ GitHub account
 - ✅ Netlify account (free tier works great)
-- ✅ Neon Database account
+- ✅ Resend account for email sending
 - ✅ All required assets (fonts and images) in the `public` folder
 
 ## Step-by-Step Deployment
@@ -36,14 +36,11 @@ git branch -M main
 git push -u origin main
 ```
 
-### 2. Setup Neon Database
+### 2. Setup Resend Email
 
-Follow the detailed instructions in `DATABASE_SETUP.md`:
-
-1. Create a Neon account at https://neon.tech
-2. Create a new project
-3. Run the SQL schema from `database/schema.sql`
-4. Copy your database connection string
+1. Create a Resend account at https://resend.com
+2. Generate an API key from the dashboard
+3. Save your API key securely (you'll need it for Netlify)
 
 ### 3. Deploy to Netlify
 
@@ -68,8 +65,8 @@ Follow the detailed instructions in `DATABASE_SETUP.md`:
    - Before deploying, click "Advanced build settings"
    - Or go to Site settings → Environment variables
    - Add:
-     - **Key**: `DATABASE_URL`
-     - **Value**: Your Neon database connection string
+     - **Key**: `RESEND_API_KEY`
+     - **Value**: Your Resend API key
 
 5. **Deploy**
    - Click "Deploy site"
@@ -94,7 +91,7 @@ netlify init
 # - Publish directory: dist
 
 # Set environment variable
-netlify env:set DATABASE_URL "your_neon_connection_string"
+netlify env:set RESEND_API_KEY "your_resend_api_key"
 
 # Deploy
 netlify deploy --prod
@@ -127,7 +124,7 @@ netlify deploy --prod
 - [ ] Mobile menu opens and closes properly
 - [ ] All images load correctly
 - [ ] Contact form submits successfully
-- [ ] Contact data appears in Neon database
+- [ ] Email is received at the configured destination
 - [ ] All links work (social media, etc.)
 - [ ] Responsive design works on mobile/tablet/desktop
 
@@ -199,20 +196,20 @@ Check Netlify deploy logs:
 
 Common issues:
 - Missing dependencies: Run `npm install` locally
-- Environment variables: Verify `DATABASE_URL` is set
+- Environment variables: Verify `RESEND_API_KEY` is set
 - Asset paths: Ensure all images exist
 
 #### Function Errors
 
 Check function logs:
 1. Functions tab in Netlify
-2. Click on `save-contact`
+2. Click on `send-contact-email`
 3. View logs for errors
 
 Common issues:
-- Database connection: Verify connection string
+- Email API: Verify Resend API key is correct
 - CORS errors: Check Netlify headers in `netlify.toml`
-- Missing packages: Ensure `@neondatabase/serverless` is in dependencies
+- Missing packages: Ensure `resend` is in dependencies
 
 #### Images Not Loading
 
@@ -249,18 +246,10 @@ In Netlify:
 - ✅ Automatically backed up on GitHub
 - Consider enabling GitHub Actions for automated tests
 
-#### Database Backup
-- Neon provides automatic backups
-- Check Neon dashboard → Backup settings
-- Consider exporting data periodically:
-
-```bash
-# Export database
-pg_dump $DATABASE_URL > backup.sql
-
-# Import backup (if needed)
-psql $DATABASE_URL < backup.sql
-```
+#### Contact Form Submissions
+- Emails are sent directly via Resend
+- Check your email inbox for all submissions
+- Consider using a dedicated email for contact form submissions
 
 ## Security Best Practices
 

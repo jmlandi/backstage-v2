@@ -29,15 +29,15 @@
               <label for="name">NOME</label>
               <input
                 id="name"
-                v-model="formData.name"
+                v-model="formData.nome"
                 type="text"
-                :class="{ 'error': errors.name }"
+                :class="{ 'error': errors.nome }"
                 required
                 minlength="3"
                 @blur="validateName"
                 placeholder="Seu nome completo"
               />
-              <span v-if="errors.name" class="error-message">{{ errors.name }}</span>
+              <span v-if="errors.nome" class="error-message">{{ errors.nome }}</span>
             </div>
 
             <div class="form-group">
@@ -58,7 +58,7 @@
               <label for="phone">TELEFONE</label>
               <input
                 id="phone"
-                v-model="formData.phone"
+                v-model="formData.telefone"
                 type="tel"
                 placeholder="(11) 99999-9999"
               />
@@ -68,15 +68,15 @@
               <label for="message">MENSAGEM</label>
               <textarea
                 id="message"
-                v-model="formData.message"
-                :class="{ 'error': errors.message }"
+                v-model="formData.mensagem"
+                :class="{ 'error': errors.mensagem }"
                 required
                 rows="5"
                 minlength="10"
                 @blur="validateMessage"
                 placeholder="Conte-nos sobre seu evento..."
               ></textarea>
-              <span v-if="errors.message" class="error-message">{{ errors.message }}</span>
+              <span v-if="errors.mensagem" class="error-message">{{ errors.mensagem }}</span>
             </div>
 
             <button type="submit" class="btn-submit" :disabled="loading">
@@ -133,11 +133,13 @@ onMounted(() => {
 }
 
 .section-title {
-  font-size: clamp(1.75rem, 4vw, 3rem);
+  font-size: clamp(1.5rem, 3vw, 2rem);
   font-weight: var(--font-weight-bold);
   margin-bottom: var(--spacing-2xl);
   text-align: center;
   color: var(--color-accent);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
   padding: 0 var(--spacing-sm);
 }
 

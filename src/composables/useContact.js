@@ -1,20 +1,20 @@
 import { ref, reactive } from 'vue'
 
 /**
- * Composable for handling contact form submission to Neon Database
+ * Composable for handling contact form submission via email
  */
 export function useContact() {
   const formData = reactive({
-    name: '',
+    nome: '',
     email: '',
-    phone: '',
-    message: ''
+    telefone: '',
+    mensagem: ''
   })
 
   const errors = reactive({
-    name: '',
+    nome: '',
     email: '',
-    message: ''
+    mensagem: ''
   })
 
   const loading = ref(false)
@@ -24,11 +24,11 @@ export function useContact() {
    * Validate name field
    */
   const validateName = () => {
-    if (!formData.name || formData.name.trim().length < 3) {
-      errors.name = 'Nome deve ter no mínimo 3 caracteres'
+    if (!formData.nome || formData.nome.trim().length < 3) {
+      errors.nome = 'Nome deve ter no mínimo 3 caracteres'
       return false
     }
-    errors.name = ''
+    errors.nome = ''
     return true
   }
 
@@ -49,11 +49,11 @@ export function useContact() {
    * Validate message field
    */
   const validateMessage = () => {
-    if (!formData.message || formData.message.trim().length < 10) {
-      errors.message = 'Mensagem deve ter no mínimo 10 caracteres'
+    if (!formData.mensagem || formData.mensagem.trim().length < 10) {
+      errors.mensagem = 'Mensagem deve ter no mínimo 10 caracteres'
       return false
     }
-    errors.message = ''
+    errors.mensagem = ''
     return true
   }
 
@@ -83,9 +83,18 @@ export function useContact() {
       })
 
       if (!response.ok) {
-        const errorData = await response.json()
-        throw new Error(errorData.error || 'Failed to submit contact form')
+        let errorMessage = 'Failed to submit contact form'
+        try {
+          const errorData = await response.json()
+          errorMessage = errorData.error || errorMessage
+        } catch (e) {
+          // Response is not JSON, use status text
+          errorMessage = response.statusText || errorMessage
+        }
+        throw new Error(errorMessage)
       }
+
+      const data = await response.json()
 
       submitMessage.value = {
         type: 'success',
@@ -93,10 +102,10 @@ export function useContact() {
       }
 
       // Reset form
-      formData.name = ''
+      formData.nome = ''
       formData.email = ''
-      formData.phone = ''
-      formData.message = ''
+      formData.telefone = ''
+      formData.mensagem = ''
     } catch (error) {
       console.error('Contact form submission error:', error)
       submitMessage.value = {

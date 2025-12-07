@@ -98,11 +98,13 @@ onMounted(() => {
 }
 
 .section-title {
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(1.5rem, 3vw, 2rem);
   font-weight: var(--font-weight-bold);
   margin-bottom: var(--spacing-lg);
   line-height: 1.2;
   color: var(--color-secondary);
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 
 .section-title .accent {

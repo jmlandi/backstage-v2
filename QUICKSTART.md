@@ -24,13 +24,15 @@ Before the site will look correct, add the required assets:
    - Add hero, show, team, and milestone images
    - Place in `/public/images/`
 
-## Database Setup
+## Email Configuration
 
-See `DATABASE_SETUP.md` for detailed instructions:
+Create a `.env` file with your Resend API key:
 
-1. Create Neon database
-2. Run schema from `database/schema.sql`
-3. Configure `.env` with `DATABASE_URL`
+```env
+RESEND_API_KEY=your_resend_api_key
+```
+
+Get your API key from [Resend Dashboard](https://resend.com/api-keys)
 
 ## Project Structure
 
@@ -43,9 +45,8 @@ backstage-website-v2/
 │   ├── styles/         # Global CSS
 │   ├── App.vue         # Root component
 │   └── main.js         # Entry point
-├── netlify/
-│   └── functions/      # Serverless functions
-└── database/           # SQL schema
+└── netlify/
+    └── functions/      # Serverless functions
 ```
 
 ## Deployment

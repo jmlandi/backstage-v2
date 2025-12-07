@@ -38,7 +38,7 @@ if [ ! -f .env ]; then
     echo "   Creating .env from .env.example..."
     cp .env.example .env
     echo "✅ .env file created"
-    echo "   ⚠️  Please edit .env and add your DATABASE_URL"
+    echo "   ⚠️  Please edit .env and add your RESEND_API_KEY"
     echo ""
 fi
 
@@ -69,9 +69,10 @@ echo "1. Add assets:"
 echo "   - Fonts: public/fonts/ (see ASSETS_GUIDE.md)"
 echo "   - Images: public/images/ (see ASSETS_GUIDE.md)"
 echo ""
-echo "2. Configure database:"
-echo "   - Create Neon database (see DATABASE_SETUP.md)"
-echo "   - Update .env with DATABASE_URL"
+echo "2. Configure email:"
+echo "   - Create Resend account at https://resend.com"
+echo "   - Generate API key from dashboard"
+echo "   - Update .env with RESEND_API_KEY"
 echo ""
 echo "3. Start development:"
 echo "   npm run dev"
